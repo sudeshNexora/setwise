@@ -1,0 +1,59 @@
+# ===== Environment =====
+.env
+backend/.env
+frontend/.env
+*.env.local
+
+# ===== Python / FastAPI backend =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+backend/.venv/
+*.egg-info/
+.eggs/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# local SQLite fallback DB
+*.sqlite3
+backend/setwise.db
+
+# uploaded material + generated exports (never commit user data)
+backend/storage/uploads/
+backend/storage/exports/
+
+# NLP model downloads / caches
+.cache/
+*.spacy
+nltk_data/
+
+# test / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ===== React / Vite frontend =====
+frontend/node_modules/
+node_modules/
+frontend/dist/
+dist/
+frontend/.vite/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ===== Editors / OS =====
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# ===== Packaged output =====
+setwise-project.zip

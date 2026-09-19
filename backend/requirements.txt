@@ -1,0 +1,28 @@
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+sqlalchemy==2.0.35
+pymysql==1.1.1
+cryptography==43.0.1
+pydantic==2.9.2
+pydantic-settings==2.5.2
+python-multipart==0.0.9
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0
+
+# document parsing
+pdfplumber==0.11.4
+python-docx==1.1.2
+
+# export
+reportlab==4.2.2
+
+# NLP
+spacy==3.7.5
+scikit-learn==1.5.2
+numpy==1.26.4
+nltk==3.9.1
+sentence-transformers==3.1.1
+
+# after install run:
+#   python -m spacy download en_core_web_sm
+#   python -c "import nltk; nltk.download('wordnet'); nltk.download('punkt')"
