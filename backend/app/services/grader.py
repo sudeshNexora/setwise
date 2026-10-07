@@ -5,15 +5,37 @@ Score = w1 * semantic similarity (Sentence-BERT cosine)
       + w2 * keyword coverage (how many model-answer concepts appear)
 
 MCQ / fill questions are matched exactly instead.
+
+w1 / w2 default to 0.65 / 0.35. If backend/app/services/grader_weights.json
+exists (written by `python -m app.services.train_grader` after fitting on
+real graded answers), those learned weights are used instead. See
+train_grader.py for how to build that file.
 """
 from __future__ import annotations
 
+import json
 import re
+from pathlib import Path
 
 from app.services.nlp_engine import extract_topics, load_embedder
 
-W_SIMILARITY = 0.65
-W_COVERAGE = 0.35
+_WEIGHTS_PATH = Path(__file__).resolve().parent / "grader_weights.json"
+_DEFAULT_WEIGHTS = {"w_similarity": 0.65, "w_coverage": 0.35}
+
+
+def _load_weights() -> dict:
+    if _WEIGHTS_PATH.exists():
+        try:
+            data = json.loads(_WEIGHTS_PATH.read_text())
+            return {"w_similarity": data["w_similarity"], "w_coverage": data["w_coverage"]}
+        except (json.JSONDecodeError, KeyError):
+            pass
+    return _DEFAULT_WEIGHTS
+
+
+_WEIGHTS = _load_weights()
+W_SIMILARITY = _WEIGHTS["w_similarity"]
+W_COVERAGE = _WEIGHTS["w_coverage"]
 
 
 def _normalise(s: str) -> str:

@@ -8,6 +8,7 @@ archive of past papers, and grades submitted answers by semantic similarity.
 
 ```bash
 cd backend
+.\.venv\Scripts\Activate.ps1 //option
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 python -m spacy download en_core_web_sm

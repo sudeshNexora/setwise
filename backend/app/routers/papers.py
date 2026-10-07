@@ -28,9 +28,14 @@ def generate_paper(payload: GenerateIn, db: Session = Depends(get_db), user: Use
         raise HTTPException(400, "Select at least one uploaded file to generate from.")
 
     corpus = "\n".join(u.extracted_text for u in uploads)
-    topics = list(dict.fromkeys(t for u in uploads for t in (u.topics or [])))
+    # Always recompute fresh from the current extractor — the stored
+    # Upload.topics snapshot is from whenever the file was uploaded and can
+    # be stale if the extraction logic has changed since. Recomputing here
+    # costs one extra pass over the text but guarantees generation always
+    # uses the latest topic-extraction rules, not whatever ran at upload time.
+    topics = extract_topics(corpus)
     if not topics:
-        topics = extract_topics(corpus)
+        topics = list(dict.fromkeys(t for u in uploads for t in (u.topics or [])))
 
     paper = Paper(
         creator_id=user.id,

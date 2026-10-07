@@ -1,0 +1,3 @@
+model_answer,student_answer,max_marks,human_score
+"A stack follows last in first out. Push adds to the top, pop removes from the top.","Stack is LIFO, push adds an item on top and pop removes the top item.",2,2
+"A stack follows last in first out. Push adds to the top, pop removes from the top.","It stores data in order.",2,0.5
