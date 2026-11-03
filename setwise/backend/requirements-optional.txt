@@ -1,0 +1,7 @@
+# Optional: better answer grading.
+# Adds Sentence-BERT semantic similarity (downloads a ~90 MB model on first use and
+# pulls in PyTorch, so it is a large install). Without it, grading falls back to
+# word overlap, which works but is cruder.
+numpy
+sentence-transformers==3.1.1
+scikit-learn

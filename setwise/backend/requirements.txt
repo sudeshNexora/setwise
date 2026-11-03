@@ -1,0 +1,22 @@
+# --- web API ---
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.12
+pydantic-settings>=2.5
+python-multipart>=0.0.9
+passlib[bcrypt]==1.7.4
+bcrypt<4.1
+python-jose[cryptography]==3.3.0
+
+# --- database (MySQL 8) ---
+sqlalchemy>=2.0.44
+pymysql>=1.1.1
+cryptography>=43
+
+# --- reading uploads / writing exports ---
+pdfplumber>=0.11.4
+python-docx>=1.1.2
+reportlab>=4.2.2
+
+# --- AI question generation ---
+google-genai
